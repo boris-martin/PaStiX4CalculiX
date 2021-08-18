@@ -7,7 +7,8 @@ cd build
 
 cmake   \
         -DBLAS_DIR=~/OpenBLAS_i8 \
-	-DHWLOC_DIR=~/PaStiX/hwloc_i8 \
+	-DHWLOC_INCDIR=~/PaStiX/hwloc_i8/include/ \
+	-DHWLOC_LIBDIR=~/PaStiX/hwloc_i8/lib/ \
 	-DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-10.2 \
 	-DCMAKE_INSTALL_PREFIX=~/PaStiX/pastix_i8 \
 	-DCMAKE_BUILD_TYPE=Release \
