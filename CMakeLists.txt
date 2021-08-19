@@ -352,14 +352,17 @@ endif (PASTIX_WITH_STARPU)
 # PaStiX might depend on Parsec
 #------------------------------
 if (PASTIX_WITH_PARSEC)
-
+    message(STATUS "Parsec used")
+    
     # Create list of components in order to make a single call to find_package(starpu...)
     set(PARSEC_COMPONENT_LIST "HWLOC")
     if(PASTIX_WITH_MPI)
         list(APPEND PARSEC_COMPONENT_LIST "MPI")
+	message(STATUS "Parsec with MPI")
     endif()
     if(PASTIX_WITH_CUDA)
         list(APPEND PARSEC_COMPONENT_LIST "CUDA")
+	message(STATUS "Parsec with CUDA")
     endif()
 
     find_package(PARSEC REQUIRED
@@ -367,11 +370,14 @@ if (PASTIX_WITH_PARSEC)
 
     # Add definition and include_dir if found
     if(PARSEC_FOUND)
+    message(STATUS "Parsec found")
       include_directories(${PARSEC_INCLUDE_DIRS_DEP})
       link_directories(${PARSEC_LIBRARY_DIRS_DEP})
       list(APPEND CMAKE_INSTALL_RPATH ${PARSEC_LIBRARY_DIRS_DEP})
     else()
-        message(FATAL_ERROR "Parsec with ${PARSEC_COMPONENT_LIST} components is required but was not found. Please provide the PaRSEC library in your environment or configure with -DPASTIX_WITH_PARSEC=OFF")
+    message(STATUS "Parsec not found")
+        message(FATAL_ERROR "Parsec with ${PARSEC_COMPONENT_LIST} components is required but was not found. Please provide the PaRSEC library in your environment or configure with -D
+	=OFF")
     endif()
 
     # Add the index-array dep management option to PTGCC compilation flags.
