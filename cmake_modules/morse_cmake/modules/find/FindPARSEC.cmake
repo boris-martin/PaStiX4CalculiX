@@ -188,6 +188,7 @@ endif()
 
 # PARSEC may depend on HWLOC, try to find it
 if (PARSEC_LOOK_FOR_HWLOC)
+message (STATUS "Looking for HWLOC for PARSEC")
   if (PARSEC_FIND_REQUIRED)
     find_package(HWLOC REQUIRED)
   else()
@@ -197,8 +198,11 @@ endif()
 
 # PARSEC may depend on CUDA, try to find it
 if (PARSEC_LOOK_FOR_CUDA)
+message (STATUS "Looking for CUDA for PARSEC")
+
   if (PARSEC_FIND_REQUIRED AND PARSEC_FIND_REQUIRED_CUDA)
     find_package(CUDA REQUIRED)
+    message(STATUS "found CUDA")
   else()
     find_package(CUDA)
   endif()
