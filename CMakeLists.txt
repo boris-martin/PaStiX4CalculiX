@@ -186,6 +186,9 @@ option(PASTIX_DEBUG_EXIT_ON_SIGSEGV
 # Look for dependencies #
 #########################
 
+# Added by Boris Martin
+find_package(Threads REQUIRED)
+
 if (PASTIX_WITH_FORTRAN)
   include(FortranCInterface)
   FortranCInterface_HEADER(common/FCmangle.h
